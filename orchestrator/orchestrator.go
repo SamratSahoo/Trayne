@@ -4,16 +4,18 @@ import (
 	"net"
 
 	network "github.com/SamratSahoo/Trayne/network"
+	types "github.com/SamratSahoo/Trayne/types"
 )
 
-var globalConnection *net.Listener = nil
-
-func Start() *net.Listener {
+func InitNode() net.Listener {
 	connection := network.InitServer("localhost", "3000")
-	globalConnection = connection
+	// Any other code to initialize orchestrator node here
 	return connection
 }
 
-func Close() {
-	(*globalConnection).Close()
+func Start() {}
+
+func Close(node *types.Node) {
+	network.EndServer(node)
+	// Orchestrator Node Cleanup Code Here
 }

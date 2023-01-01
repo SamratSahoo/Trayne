@@ -4,6 +4,6 @@ func FindPeripheralNodes() []string {
 	return []string{}
 }
 
-func VerifyPeripheralNodes(peerList []string) {
-
+func VerifyPeripheralNodes(peerList []string) []string {
+	return peerList
 }

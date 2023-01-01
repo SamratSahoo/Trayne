@@ -2,8 +2,8 @@
 
 ## Run Orchestrator Client
 
-`go run main.go orchestrator`
+`go run main.go --type "orchestrator"`
 
 ## Run Peripheral Client
 
-`go run main.go peripheral`
+`go run main.go --type "peripheral"`

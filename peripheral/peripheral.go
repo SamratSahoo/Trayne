@@ -4,16 +4,17 @@ import (
 	"net"
 
 	network "github.com/SamratSahoo/Trayne/network"
+	types "github.com/SamratSahoo/Trayne/types"
 )
 
-var globalConnection *net.Listener = nil
-
-func Start() *net.Listener {
+func InitNode() net.Listener {
 	connection := network.InitServer("localhost", "4000")
-	globalConnection = connection
+	// Any other code to initialize peripheral node here
 	return connection
 }
+func Start() {}
 
-func Close() {
-	(*globalConnection).Close()
+func Close(node *types.Node) {
+	network.EndServer(node)
+	// Peripheral Node Cleanup Code Here
 }
