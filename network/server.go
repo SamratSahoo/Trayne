@@ -6,13 +6,11 @@ import (
 )
 
 const (
-	HOST = "localhost"
-	PORT = "3000"
 	TYPE = "tcp"
 )
 
-func InitServer() *net.Listener {
-	server, err := net.Listen(TYPE, net.JoinHostPort(HOST, PORT))
+func InitServer(host string, port string) *net.Listener {
+	server, err := net.Listen(TYPE, net.JoinHostPort(host, port))
 
 	if err != nil {
 		log.Fatal(err)

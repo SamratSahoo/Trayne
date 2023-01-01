@@ -9,7 +9,7 @@ import (
 var globalConnection *net.Listener = nil
 
 func Start() *net.Listener {
-	connection := network.InitServer()
+	connection := network.InitServer("localhost", "3000")
 	globalConnection = connection
 	return connection
 }
