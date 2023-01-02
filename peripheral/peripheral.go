@@ -1,8 +1,6 @@
 package peripheral
 
 import (
-	"encoding/json"
-	"fmt"
 	"log"
 	"net"
 	"os"
@@ -41,17 +39,8 @@ func Start(node *types.Node) {
 }
 
 func connectionHandler(connection net.Conn) {
-	// Make a buffer to hold the message
-	buffer := network.TCPReader(64, &connection)
-
-	// Read the message as a JSON
-	var message map[string]string
-	err := json.Unmarshal(buffer, &message)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(message)
+	message := network.DecodeMessage(connection)
+	messageRouter(message)
 }
 
 func Close(node *types.Node) {

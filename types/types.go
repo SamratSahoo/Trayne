@@ -9,6 +9,7 @@ const (
 
 const (
 	PERIPHERAL_VERIFICATION = "peripheral verification"
+	PERIPHERAL_CONFIRMATION = "peripheral confirmation"
 )
 
 const (

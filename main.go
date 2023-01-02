@@ -48,7 +48,7 @@ func main() {
 			}
 	}
 	fmt.Println("Node Type:", node.NodeType)
-	fmt.Println("Node Peripherals (if applicable):", node.Peripherals)
+	fmt.Println("Node Peripherals (if applicable):", *node.Peripherals)
 	fmt.Println("Node Address:", node.Server.Addr())
 	defer node.Close(&node)
 	node.Start(&node)

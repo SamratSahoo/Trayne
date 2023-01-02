@@ -1,0 +1,15 @@
+package peripheral
+
+import (
+	types "github.com/SamratSahoo/Trayne/types"
+)
+
+func messageRouter(message map[string]string) {
+	switch messageType := message["messageType"]; messageType {
+	case types.PERIPHERAL_VERIFICATION:
+		// do not need to actually do anything here
+		// used more as an endpoint for the orchestrator to verify the connection
+		// kept here as a filler case for clarification
+		break
+	}
+}
