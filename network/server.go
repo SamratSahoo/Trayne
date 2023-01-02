@@ -7,12 +7,8 @@ import (
 	types "github.com/SamratSahoo/Trayne/types"
 )
 
-const (
-	TYPE = "tcp"
-)
-
 func InitServer(host string, port string) net.Listener {
-	server, err := net.Listen(TYPE, net.JoinHostPort(host, port))
+	server, err := net.Listen(types.CONNECTION_TYPE, net.JoinHostPort(host, port))
 
 	if err != nil {
 		log.Fatal(err)
