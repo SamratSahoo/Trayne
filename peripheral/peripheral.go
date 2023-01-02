@@ -1,8 +1,6 @@
 package peripheral
 
 import (
-	"bufio"
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -44,16 +42,11 @@ func Start(node *types.Node) {
 
 func connectionHandler(connection net.Conn) {
 	// Make a buffer to hold the message
-	buffer := make([]byte, 1024)
-	_, err := bufio.NewReader(connection).Read(buffer)
-	buffer = bytes.Trim(buffer, "\x00") // Remove extra zeroes from buffer
+	buffer := network.TCPReader(64, &connection)
 
-	if err != nil {
-		log.Fatal(err)
-	}
 	// Read the message as a JSON
 	var message map[string]string
-	err = json.Unmarshal(buffer, &message)
+	err := json.Unmarshal(buffer, &message)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -19,6 +19,7 @@ func InitNode(host string, port int) net.Listener {
 		"Hello":   "World",
 		"Goodbye": "Sun",
 	})
+
 	return server
 }
 
@@ -39,7 +40,6 @@ func Start(node *types.Node) {
 		}
 
 		connectionHandler(connection)
-
 	}
 }
 
