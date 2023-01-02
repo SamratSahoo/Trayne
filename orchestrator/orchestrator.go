@@ -15,6 +15,10 @@ import (
 func InitNode(host string, port int) net.Listener {
 	server := network.InitServer(host, strconv.Itoa(port))
 	// Any other code to initialize orchestrator node here
+	network.SendMessage("localhost", "4000", map[string]string{
+		"Hello":   "World",
+		"Goodbye": "Sun",
+	})
 	return server
 }
 

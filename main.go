@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	orchestrator "github.com/SamratSahoo/Trayne/orchestrator"
 	peripheral "github.com/SamratSahoo/Trayne/peripheral"
@@ -46,6 +47,9 @@ func main() {
 				Close:    peripheral.Close,
 			}
 	}
+	fmt.Println("Node Type:", node.NodeType)
+	fmt.Println("Node Peripherals (if applicable):", node.Peripherals)
+	fmt.Println("Node Address:", node.Server.Addr())
 	defer node.Close(&node)
 	node.Start(&node)
 }
