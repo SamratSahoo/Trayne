@@ -5,11 +5,13 @@ import "net"
 const (
 	ORCHESTRATOR = "orchestrator"
 	PERIPHERAL   = "peripheral"
+	CLIENT       = "client"
 )
 
 const (
-	PERIPHERAL_VERIFICATION = "peripheral verification"
-	PERIPHERAL_CONFIRMATION = "peripheral confirmation"
+	PERIPHERAL_VERIFICATION    = "peripheral verification"
+	PERIPHERAL_CONFIRMATION    = "peripheral confirmation"
+	ORCHESTRATOR_TRAINING_INIT = "orchestrator training init"
 )
 
 const (

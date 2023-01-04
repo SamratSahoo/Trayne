@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strconv"
 
+	"github.com/SamratSahoo/Trayne/network"
 	orchestrator "github.com/SamratSahoo/Trayne/orchestrator"
 	peripheral "github.com/SamratSahoo/Trayne/peripheral"
 	types "github.com/SamratSahoo/Trayne/types"
@@ -23,7 +25,6 @@ func main() {
 	flag.Parse()
 
 	utils.ParseFlags(&nodeType, &host, &port, &peers, &peripheralList)
-
 	var node types.Node
 	if nodeType == types.ORCHESTRATOR {
 		node =
@@ -46,10 +47,19 @@ func main() {
 				Start:    peripheral.Start,
 				Close:    peripheral.Close,
 			}
+	} else if nodeType == types.CLIENT {
+		network.SendMessage(host, strconv.Itoa(port), map[string]string{
+			"messageType": types.ORCHESTRATOR_TRAINING_INIT,
+		})
 	}
-	fmt.Println("Node Type:", node.NodeType)
-	fmt.Println("Node Peripherals (if applicable):", *node.Peripherals)
-	fmt.Println("Node Address:", node.Server.Addr())
-	defer node.Close(&node)
-	node.Start(&node)
+
+	if nodeType != types.CLIENT {
+		fmt.Println("============ Node Info ============")
+		fmt.Println("Node Type:", node.NodeType)
+		fmt.Println("Node Peripherals (if applicable):", node.Peripherals)
+		fmt.Println("Node Address:", node.Server.Addr())
+		fmt.Println("\n============ Node Logs ============")
+		defer node.Close(&node)
+		node.Start(&node)
+	}
 }

@@ -1,6 +1,8 @@
 package peripheral
 
 import (
+	"fmt"
+
 	types "github.com/SamratSahoo/Trayne/types"
 )
 
@@ -10,6 +12,6 @@ func messageRouter(message map[string]string) {
 		// do not need to actually do anything here
 		// used more as an endpoint for the orchestrator to verify the connection
 		// kept here as a filler case for clarification
-		break
+		fmt.Println("NODE: node has been verified by", message["source"])
 	}
 }
