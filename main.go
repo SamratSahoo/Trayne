@@ -8,8 +8,9 @@ import (
 	"github.com/SamratSahoo/Trayne/network"
 	orchestrator "github.com/SamratSahoo/Trayne/orchestrator"
 	peripheral "github.com/SamratSahoo/Trayne/peripheral"
-	types "github.com/SamratSahoo/Trayne/types"
+	training "github.com/SamratSahoo/Trayne/training"
 	utils "github.com/SamratSahoo/Trayne/utils"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
 func main() {
@@ -18,9 +19,11 @@ func main() {
 	var port int
 	var peers string
 	var peripheralList []string
+	var dataDirectory string
 	flag.StringVar(&nodeType, "type", types.ORCHESTRATOR, "Type of node you want to run (orchestrator or peripheral)")
 	flag.StringVar(&peers, "peers", "", "IP addresses of the peripheral nodes you want to connect to")
 	flag.StringVar(&host, "host", "localhost", "Host of the node")
+	flag.StringVar(&dataDirectory, "data", "images", "Directory of where your data is located")
 	flag.IntVar(&port, "port", -1, "Port to run the node on")
 	flag.Parse()
 
@@ -48,8 +51,9 @@ func main() {
 				Close:    peripheral.Close,
 			}
 	} else if nodeType == types.CLIENT {
-		network.SendMessage(host, strconv.Itoa(port), map[string]string{
+		network.SendMessage(host, strconv.Itoa(port), map[string]interface{}{
 			"messageType": types.ORCHESTRATOR_TRAINING_INIT,
+			"data":        training.GetDataset(dataDirectory),
 		})
 	}
 

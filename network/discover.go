@@ -1,11 +1,10 @@
 package network
 
 import (
-	"fmt"
 	"log"
 	"net"
 
-	types "github.com/SamratSahoo/Trayne/types"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
 func FindPeripheralNodes() []string {
@@ -24,14 +23,14 @@ func VerifyPeripheralNodes(source string, peerList []string) []string {
 		if err != nil {
 			log.Fatal(peer, "is not a valid ip address!")
 		}
-		success, err := SendMessage(host, port, map[string]string{
+		success, err := SendMessage(host, port, map[string]interface{}{
 			"source":      source,
 			"destination": net.JoinHostPort(host, port),
 			"messageType": types.PERIPHERAL_VERIFICATION,
 		})
 
 		if err != nil {
-			fmt.Println(err)
+			log.Fatal(err)
 		}
 
 		if success {

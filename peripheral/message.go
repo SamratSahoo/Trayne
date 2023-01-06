@@ -3,10 +3,10 @@ package peripheral
 import (
 	"fmt"
 
-	types "github.com/SamratSahoo/Trayne/types"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
-func messageRouter(message map[string]string) {
+func messageRouter(message map[string]interface{}) {
 	switch messageType := message["messageType"]; messageType {
 	case types.PERIPHERAL_VERIFICATION:
 		// do not need to actually do anything here

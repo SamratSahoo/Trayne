@@ -9,7 +9,7 @@ import (
 	"syscall"
 
 	network "github.com/SamratSahoo/Trayne/network"
-	types "github.com/SamratSahoo/Trayne/types"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
 func InitNode(host string, port int) net.Listener {

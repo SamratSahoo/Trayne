@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	types "github.com/SamratSahoo/Trayne/types"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
 func InitServer(host string, port string) net.Listener {

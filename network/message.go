@@ -5,10 +5,10 @@ import (
 	"log"
 	"net"
 
-	types "github.com/SamratSahoo/Trayne/types"
+	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
-func SendMessage(host string, port string, message map[string]string) (bool, error) {
+func SendMessage(host string, port string, message map[string]interface{}) (bool, error) {
 	connection, err := net.Dial(types.CONNECTION_TYPE, net.JoinHostPort(host, port))
 	if err != nil {
 		return false, err
@@ -29,12 +29,11 @@ func SendMessage(host string, port string, message map[string]string) (bool, err
 
 }
 
-func DecodeMessage(connection net.Conn) map[string]string {
+func DecodeMessage(connection net.Conn) map[string]interface{} {
 	// Make a buffer to hold the message
-	buffer := TCPReader(64, &connection)
-
+	buffer := TCPReader(1024, &connection)
 	// Read the message as a JSON
-	var message map[string]string
+	var message map[string]interface{}
 	err := json.Unmarshal(buffer, &message)
 	if err != nil {
 		log.Fatal(err)
