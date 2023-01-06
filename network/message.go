@@ -10,10 +10,10 @@ import (
 
 func SendMessage(host string, port string, message map[string]interface{}) (bool, error) {
 	connection, err := net.Dial(types.CONNECTION_TYPE, net.JoinHostPort(host, port))
-	defer connection.Close()
 	if err != nil {
 		return false, err
 	}
+	defer connection.Close()
 
 	jsonMessage, err := json.Marshal(message)
 	if err != nil {

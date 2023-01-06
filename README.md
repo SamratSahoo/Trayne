@@ -21,7 +21,7 @@ netcat 127.0.0.1 3000
 {"messageType":"orchestrator training init"}
 ```
 
-Alternatively, run the project as a client:
+Alternatively, run the project as a client and specify the orchestrator's host and port:
 
 ```
 go run main.go --type client --host 127.0.0.1 --port 3000

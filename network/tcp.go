@@ -7,7 +7,6 @@ import (
 	"net"
 )
 
-// Buffer size must be > 1
 func TCPReader(bufferSize int, connection *net.Conn) []byte {
 	var buffer []byte
 	reader := bufio.NewReader(*connection)
