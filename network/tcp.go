@@ -19,12 +19,12 @@ func TCPReader(bufferSize int, connection *net.Conn) []byte {
 			if err == io.EOF {
 				break
 			}
+			return []byte{}
 		}
-		tempBuffer = bytes.Trim(tempBuffer, "\x00") // Remove extra zeroes from buffer
 
+		tempBuffer = bytes.Trim(tempBuffer, "\x00") // Remove extra zeroes from buffer
 		// Append to global buffer
 		buffer = append(buffer, tempBuffer...)
 	}
-	buffer = bytes.Trim(buffer, "\x00") // Remove extra zeroes from buffer
 	return buffer
 }

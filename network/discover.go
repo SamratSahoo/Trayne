@@ -23,15 +23,11 @@ func VerifyPeripheralNodes(source string, peerList []string) []string {
 		if err != nil {
 			log.Fatal(peer, "is not a valid ip address!")
 		}
-		success, err := SendMessage(host, port, map[string]interface{}{
+		success, _ := SendMessage(host, port, map[string]interface{}{
 			"source":      source,
 			"destination": net.JoinHostPort(host, port),
 			"messageType": types.PERIPHERAL_VERIFICATION,
 		})
-
-		if err != nil {
-			log.Fatal(err)
-		}
 
 		if success {
 			validPeers = append(validPeers, peer)

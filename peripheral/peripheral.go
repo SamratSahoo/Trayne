@@ -32,7 +32,6 @@ func Start(node *types.Node) {
 		if err != nil {
 			log.Fatal(err)
 		}
-
 		go connectionHandler(connection)
 
 	}
