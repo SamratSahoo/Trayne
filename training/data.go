@@ -45,3 +45,31 @@ func GetDataset(directory string) map[string][]string {
 
 	return result
 }
+
+func PartitionDataset(dataset map[string][]string, partitionCount int) []map[string][]string {
+	// Make a slice of maps with length n
+	partitions := make([]map[string][]string, partitionCount)
+	for i := range partitions {
+		partitions[i] = make(map[string][]string)
+	}
+
+	// Iterate over the keys in the data map
+	i := 0
+	for key, values := range dataset {
+		// Iterate over the values in the values slice
+		for _, value := range values {
+			// Add the key-value pair to the current partition
+			partitions[i][key] = append(partitions[i][key], value)
+			// Move to the next partition
+			i = (i + 1) % partitionCount
+		}
+	}
+
+	return partitions
+}
+
+// TODO: Work on type assertions for Values of Dataset
+func TypeAssertDataset(dataset interface{}) map[string][]string {
+
+	return map[string][]string{}
+}
