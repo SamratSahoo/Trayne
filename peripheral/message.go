@@ -13,5 +13,7 @@ func messageRouter(message map[string]interface{}) {
 		// used more as an endpoint for the orchestrator to verify the connection
 		// kept here as a filler case for clarification
 		fmt.Println("NODE: node has been verified by", message["source"])
+	case types.PERIPHERAL_TRAINING:
+		fmt.Println("NODE: node has received data from orchestrator")
 	}
 }

@@ -11,6 +11,7 @@ const (
 const (
 	PERIPHERAL_VERIFICATION    = "peripheral verification"
 	PERIPHERAL_CONFIRMATION    = "peripheral confirmation"
+	PERIPHERAL_TRAINING        = "peripheral training"
 	ORCHESTRATOR_TRAINING_INIT = "orchestrator training init"
 )
 
