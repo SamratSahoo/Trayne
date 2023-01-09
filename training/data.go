@@ -70,6 +70,15 @@ func PartitionDataset(dataset map[string][]string, partitionCount int) []map[str
 
 // TODO: Work on type assertions for Values of Dataset
 func TypeAssertDataset(dataset interface{}) map[string][]string {
+	asserted, ok := dataset.(map[string]interface{})
+	if !ok {
+		log.Fatal("FAILURE: Failed to assert dataset to a proper type")
+	}
 
-	return map[string][]string{}
+	result := map[string][]string{}
+	for key := range asserted {
+		assertedVal, _ := (asserted[key]).([]string)
+		result[key] = assertedVal
+	}
+	return result
 }

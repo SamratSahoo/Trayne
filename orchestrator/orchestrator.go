@@ -34,13 +34,13 @@ func Start(node *types.Node) {
 			log.Fatal(err)
 		}
 
-		connectionHandler(connection)
+		connectionHandler(connection, node)
 	}
 }
 
-func connectionHandler(connection net.Conn) {
+func connectionHandler(connection net.Conn, node *types.Node) {
 	message := network.DecodeMessage(connection)
-	messageRouter(message)
+	messageRouter(message, node)
 }
 
 func Close(node *types.Node) {
