@@ -53,10 +53,10 @@ func PartitionDataset(dataset map[string][]string, partitionCount int) []map[str
 		partitions[i] = make(map[string][]string)
 	}
 
-	// Iterate over the keys in the data map
+	// Iterate over the classes in the dataset
 	i := 0
 	for key, values := range dataset {
-		// Iterate over the values in the values slice
+		// Iterate over the data values for each class
 		for _, value := range values {
 			// Add the key-value pair to the current partition
 			partitions[i][key] = append(partitions[i][key], value)
@@ -66,19 +66,4 @@ func PartitionDataset(dataset map[string][]string, partitionCount int) []map[str
 	}
 
 	return partitions
-}
-
-// TODO: Work on type assertions for Values of Dataset
-func TypeAssertDataset(dataset interface{}) map[string][]string {
-	asserted, ok := dataset.(map[string]interface{})
-	if !ok {
-		log.Fatal("FAILURE: Failed to assert dataset to a proper type")
-	}
-
-	result := map[string][]string{}
-	for key := range asserted {
-		assertedVal, _ := (asserted[key]).([]string)
-		result[key] = assertedVal
-	}
-	return result
 }
