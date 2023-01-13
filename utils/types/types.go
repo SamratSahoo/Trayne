@@ -19,6 +19,11 @@ const (
 	CONNECTION_TYPE = "tcp"
 )
 
+type Message struct {
+	MessageType string
+	Data        map[string]interface{}
+}
+
 type Node struct {
 	NodeType    string
 	Server      net.Listener

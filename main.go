@@ -51,10 +51,11 @@ func main() {
 				Close:    peripheral.Close,
 			}
 	} else if nodeType == types.CLIENT {
-		network.SendMessage(host, strconv.Itoa(port), map[string]interface{}{
-			"messageType": types.ORCHESTRATOR_TRAINING_INIT,
-			"data":        training.GetDataset(dataDirectory),
-		})
+		message := types.Message{
+			MessageType: types.ORCHESTRATOR_TRAINING_INIT,
+			Data:        utils.ToMapInterface(training.GetDataset(dataDirectory)),
+		}
+		network.SendMessage(host, strconv.Itoa(port), message)
 	}
 
 	if nodeType != types.CLIENT {
