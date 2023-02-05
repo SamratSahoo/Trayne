@@ -8,7 +8,7 @@ import (
 	types "github.com/SamratSahoo/Trayne/utils/types"
 )
 
-func SendMessage(host string, port string, message map[string]interface{}) (bool, error) {
+func SendMessage(host string, port string, message any) (bool, error) {
 	connection, err := net.Dial(types.CONNECTION_TYPE, net.JoinHostPort(host, port))
 	if err != nil {
 		return false, err
@@ -30,7 +30,7 @@ func SendMessage(host string, port string, message map[string]interface{}) (bool
 
 }
 
-func DecodeMessage(connection net.Conn) map[string]interface{} {
+func DecodeMessage(connection net.Conn) types.Message {
 	// Make a buffer to hold the message
 	buffer := TCPReader(1024, &connection)
 	// Read the message as a JSON
@@ -39,5 +39,10 @@ func DecodeMessage(connection net.Conn) map[string]interface{} {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return message
+
+	returnedMessage := types.Message{
+		MessageType: message["MessageType"].(string),
+		Data:        message["Data"].(map[string]interface{}),
+	}
+	return returnedMessage
 }
